@@ -1,6 +1,6 @@
 //carregando módulos
 const express = require('express');
-const handlebars = require('handlebars');
+const handlebars = require('express-handlebars');
 //Body-parser foi descontinuado!!
 //const bodyParser = require('body-parser');
 const app = express();

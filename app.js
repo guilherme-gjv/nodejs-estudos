@@ -18,9 +18,9 @@ app.use(express.urlencoded({ extended: true }));
 app.engine('handlebars', handlebars({ defaultLayout: 'main' }));//
 app.set('view engine', 'handlebars');
     //mongoose
-
+ 
     //public
-app.use(express.static(path.join(__dirname, "public")))
+app.use(express.static(path.join(__dirname, 'public')))
 
 //rotas
 app.use('/admin', admin);

@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 
     //handlebars
 app.engine('handlebars', handlebars({ defaultLayout: 'main' }));//
-app.set('view engine', 'handlebars');
+app.set('view engine', 'handlebars'); 
     //mongoose
  
     //public

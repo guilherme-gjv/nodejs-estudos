@@ -6,7 +6,7 @@ const handlebars = require('express-handlebars');
 const app = express();
 const admin = require('./routes/admin');
 const path = require("path")
-//const mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
 //configurações
     //body-parser
@@ -18,7 +18,12 @@ app.use(express.urlencoded({ extended: true }));
 app.engine('handlebars', handlebars({ defaultLayout: 'main' }));//
 app.set('view engine', 'handlebars'); 
     //mongoose
- 
+mongoose.Promise = global.Promise;
+mongoose.connect("mongoose://localhost/blogapp").then(()=>{
+    console.log("conectado!");
+}).catch((err)=>{
+    console.log("deu erro! "+ err);
+})
     //public
 app.use(express.static(path.join(__dirname, 'public')))
 

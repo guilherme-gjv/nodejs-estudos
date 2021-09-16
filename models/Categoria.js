@@ -17,3 +17,5 @@ const categoria = new Schema({
         default: Date.now()
     }
 })
+
+mongoose.model("categorias",Categoria)

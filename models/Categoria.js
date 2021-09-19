@@ -1,8 +1,7 @@
 const mongoose = require("mongoose");
-const internal = require("stream");
 const Schema = mongoose.Schema;
 
-const categoria = new Schema({
+const Categoria = new Schema({
     nome: {
         type: String,
         required: true

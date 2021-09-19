@@ -19,7 +19,7 @@ app.engine('handlebars', handlebars({ defaultLayout: 'main' }));//
 app.set('view engine', 'handlebars'); 
     //mongoose
 mongoose.Promise = global.Promise;
-mongoose.connect("mongoose://localhost/blogapp").then(()=>{
+mongoose.connect("mongodb://localhost:27017/blogapp").then(()=>{
     console.log("conectado!");
 }).catch((err)=>{
     console.log("deu erro! "+ err);

@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-require('../models/Categoria.js')
 const Categoria = require("../models/Categoria")
 
 router.get('/', (req,res)=>{
@@ -13,15 +12,16 @@ router.get('/posts', (req, res)=>{
 })
 
 router.get('/categorias', (req, res)=>{
-    res.render("admin/categorias.handlebars");
+    res.render("admin/categorias");
 })
 
-router.post('categorias/nova',(req,res)=>{
+router.post('/categorias/nova',(req,res)=>{
     const novaCategoria = {
         nome: req.body.nome,
         slug: req.body.slug
     }
 
+    //new Categoria(novaCategoria).save().then(()=>{
     new Categoria(novaCategoria).save().then(()=>{
         console.log('categoria criada :)');
     }).catch((err)=>{

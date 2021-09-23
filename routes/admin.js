@@ -42,7 +42,10 @@ router.post('/categorias/nova', (req, res) => {
 
         //new Categoria(novaCategoria).save().then(()=>{
         new Categoria(novaCategoria).save().then(() => {
-            req.flash('success_msg', 'Categoria criada')
+            req.flash("success_msg", 'Categoria criada')
+            //({ texto: "Nome da categoria inválido" })
+            console.log('success_msg')
+            console.log("criadaa")
             res.redirect('/admin/categorias')
         }).catch((err) => {
             req.flash('error_msg', 'Houve um erro ao salvar a categoria: '+err)

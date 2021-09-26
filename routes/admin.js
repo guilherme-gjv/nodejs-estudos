@@ -63,14 +63,15 @@ router.post('/categorias/nova', (req, res) => {
 })
 
 router.get('/categorias/edit/:id',(req,res)=>{
-    Categoria.findOne({where: {id: req.params.id}}).lean().then((categoria)=>{
+    Categoria.findOne({where:{_id:req.params.id}}).lean().then((categoria) => {
         res.render("admin/editcategorias",{categoria:categoria})
+         
     }).catch((err)=>{
         req.flash("error_msg", "esta categorias não existe")
-        res.redirect("/admin/categorias")
+        console.log("erro na edição: ",err);
+        return res.redirect("/admin/categorias")
     })
     
-    res.render('admin/editcategorias')
 } )
 
 router.get('/categorias/add', (req, res) => {

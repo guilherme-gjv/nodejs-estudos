@@ -46,12 +46,10 @@ router.post('/categorias/nova', (req, res) => {
             slug: req.body.slug
         }
 
-        //new Categoria(novaCategoria).save().then(()=>{
+        
         new Categoria(novaCategoria).save().then(() => {
             req.flash("success_msg", 'Categoria criada')
-            //({ texto: "Nome da categoria inválido" })
-            console.log('success_msg')
-            console.log("criadaa")
+            console.log("Categoria criada")
             res.redirect('/admin/categorias')
         }).catch((err) => {
             req.flash('error_msg', 'Houve um erro ao salvar a categoria: ' + err)
@@ -90,6 +88,18 @@ router.post('/categorias/edit', (req, res) => {
     }).catch((err) => {
         req.flash("error_msg", "Houve um erro ao editar categoria!")
         console.log("erro: ",err)
+        res.redirect("/admin/categorias")
+    })
+})
+
+router.post("/categorias/deletar" , (req,res)=>{
+    Categoria.deleteOne({_id: req.body.id}).then(()=>{
+        req.flash("success_msg", "categoria deletada com sucesso")
+        res.redirect("/admin/categorias")
+        console.log("categoria deletada")
+    }).catch((err)=>{
+        console.log("catch")
+        req.flash("error_msg","houve um erro ao deletar a categoria")
         res.redirect("/admin/categorias")
     })
 })

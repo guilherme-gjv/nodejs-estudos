@@ -1,7 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const mongoose = require('mongoose');
-const Categoria = require("../models/Categoria")
+const mongoose = require("mongoose");
+require("../models/Categoria")
+const Categoria = mongoose.model("categorias")
+require("../models/Postagem")
+const Postagem = mongoose.model("postagens")
 
 
 router.get('/', (req, res) => {
@@ -121,6 +124,33 @@ router.get("/postagens/add", (req, res )=>{
         res.redirect("/admin")
     })
     
+})
+
+router.post("/postagens/nova", (req,res)=>{
+    var erros = []
+
+    if(req.body.categoria == "0"){
+        erros.push({texto: "Categoria inválida! Registre uma"})
+    }
+    if(erros.length > 0){
+        res.render("admin/addpostagens",{erros:erros})
+    }else{
+        const novaPostagem = {
+            titulo: req.body.titulo,
+            slug: req.body.slug,
+            descricao: req.body.descricao,
+            conteudo: req.body.conteudo,
+            categoria: req.body.categoria
+        }
+
+        new Postagem(novaPostagem).save().then(()=>{
+            req.flash("success_msg", "Postagem salva com sucesso")
+            res.redirect("/admin/postagens")
+        }).catch((err)=>{
+            req.flash("error_msg", "Houve um erro ao salvar a postagem")
+            res.redirect("/admin/postagens")
+        })
+    }
 })
 
 module.exports = router;

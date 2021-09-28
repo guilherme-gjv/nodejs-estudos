@@ -22,6 +22,10 @@ router.get('/categorias', (req, res) => {
 
 })
 
+router.get('/categorias/add', (req, res) => {
+    res.render('admin/addcategorias');
+})
+
 router.post('/categorias/nova', (req, res) => {
 
     var erros = []
@@ -104,8 +108,19 @@ router.post("/categorias/deletar" , (req,res)=>{
     })
 })
 
-router.get('/categorias/add', (req, res) => {
-    res.render('admin/addcategorias');
+router.get("/postagens", (req, res )=>{
+    res.render("admin/postagens");
+})
+
+router.get("/postagens/add", (req, res )=>{
+    Categoria.find().lean().then((categorias)=>{
+        res.render("admin/addpostagens",{categorias: categorias});
+        req.flash("success_msg", "postagem criada!")
+    }).catch((err)=>{
+        req.flash("error_msg", "houve um erro ao carregar o formulário categoria")
+        res.redirect("/admin")
+    })
+    
 })
 
 module.exports = router;

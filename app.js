@@ -41,9 +41,9 @@ mongoose.connect("mongodb://localhost/blogapp").then(()=>{
 })
     //public
 app.use(express.static(path.join(__dirname, 'public')))
-
+  
 //rotas
-app.use('/admin', admin);
+app.use('/admin', admin)
 
 //outros
 const PORT = 7777;

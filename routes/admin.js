@@ -161,4 +161,49 @@ router.post("/postagens/nova", (req,res)=>{
     }
 })
 
+router.get("/postagens/edit/:id", (req,res)=>{
+    Postagem.findOne({_id: req.params.id}).lean().then((postagem)=>{
+        Categoria.find().lean().then((categorias)=>{
+            res.render("admin/editpostagens",{categorias:categorias,postagem:postagem});
+        }).catch((err)=>{
+            req.flash("error_msg", "não foi possível encontrar categorias para as postagens")
+        })
+    }).catch((err)=>{
+        req.flash("error_msg","houve um erro ao carregar o formulário de edição");
+        res.redirect("/admin/postagens");
+    })
+    
+})
+
+router.post("/postagens/edit",(req,res)=>{
+    Postagem.findOne({_id: req.body.id}).then((postagem)=>{
+        postagem.titulo = req.body.titulo 
+        postagem.slug = req.body.slug
+        postagem.descricao = req.body.descricao
+        postagem.conteudo = req.body.conteudo
+        postagem.categoria = req.body.categoria
+
+        postagem.save().then(()=>{
+            req.flash("success_msg", "Postagem editada e salva com sucesso!");
+            res.redirect("/admin/postagens");
+        }).catch((err)=>{
+            req.flash("error_msg", "Não foi possível salvar a postagem editada");
+            res.redirect("/admin/postagens");
+        })
+
+    }).catch((err)=>{
+        req.flash("error_msg", "Houve um erro");
+        res.redirect("/admin/postagens");
+    })
+})
+router.post("/postagens/deletar",(req,res)=>{
+    Postagem.deleteOne({_id: req.body.id}).then(()=>{
+        req.flash("success_msg", "Postagem deletada!");
+        res.redirect("/admin/postagens");
+    }).catch((err)=>{
+        req.flash("error_msg", "Houve um erro ao deletar!");
+        res.redirect("/admin/postagens");
+    })
+})
+
 module.exports = router;

@@ -8,7 +8,9 @@ const admin = require('./routes/admin');
 const path = require("path")
 const mongoose = require('mongoose');
 const session = require("express-session")
-const flash = require("connect-flash")
+const flash = require("connect-flash");
+require("./models/Postagem")
+const Postagem = mongoose.model("postagens");
 
 //configurações
     //session
@@ -41,7 +43,19 @@ mongoose.connect("mongodb://localhost/blogapp").then(()=>{
 })
     //public
 app.use(express.static(path.join(__dirname, 'public')))
-  
+
+app.get('/', (req, res) => {
+    Postagem.find().lean().populate("categoria").sort({data: "desc"}).then((postagens)=>{
+        res.render("index", {postagens:postagens})
+    }).catch((err)=>{
+        req.flash("error_msg", "Não foi possível carregar as postagens");
+        res.redirect("/404");
+    })
+    
+});
+app.get("/404", (req,res)=>{
+    res.send("Erro 404");
+});
 //rotas
 app.use('/admin', admin)
 

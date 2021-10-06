@@ -5,15 +5,9 @@ require("../models/Categoria")
 const Categoria = mongoose.model("categorias")
 require("../models/Postagem")
 const Postagem = mongoose.model("postagens")
-
-
-router.get('/', (req, res) => {
-    res.render('admin/index')
-});
-
-router.get('/posts', (req, res) => {
-    res.send("Posts");
-})
+//router.get('/posts', (req, res) => {
+  //  res.send("Posts");
+//})
 
 router.get('/categorias', (req, res) => {
     Categoria.find().lean().sort({ date: 'desc' }).then((categorias) => {

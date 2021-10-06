@@ -1,0 +1,20 @@
+<div class="bg-light p-5 rounded-lg m-3">
+  <h1 class="display-4">Bem vindo ao Blog do Node</h1>
+  <p class="lead">Esse é o tal do Nódulo Jorge Silva</p>
+  <hr class="my-4">
+  <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+  <a class="btn btn-primary btn-lg" href="#" role="button">Crie uma conta</a>
+</div>
+
+<h2>Página de Posts</h2>
+{{#each postagens}}
+    <div class="card">
+        <div class="card-body">
+            <h3>{{titulo}}</h3>
+            <p>{{descricao}}</p>
+        </div>
+    </div>
+
+{{else}}
+<h4>Sem postagens!</h4>
+{{/each}}

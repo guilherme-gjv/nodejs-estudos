@@ -73,4 +73,8 @@ router.post("/registro", (req, res) => { //NÃO ESTÁ VALIDANDO T-T
     }
 })
 
+router.get("/login", (req,res)=>{
+    res.render("usuarios/login")
+})
+
 module.exports = router

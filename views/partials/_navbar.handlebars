@@ -13,12 +13,15 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/categorias/">Categorias</a>
                 </li>
+                {{#if user}}
+                {{else}}
                 <li class="nav-item">
                     <a class="nav-link active" href="/usuarios/login">Login</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" href="/usuarios/registro">Registro</a>
                 </li>
+                {{/if}}
             </ul>
             <form class="d-flex">
             </form>

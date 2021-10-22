@@ -5,6 +5,7 @@ require("../models/Usuario")
 const Usuario = mongoose.model("usuarios")
 const bcrypt = require("bcryptjs")
 const passport = require("passport")
+const eAdmin = require('../helpers/eAdmin')
 
 router.get("/registro", (req, res) => {
     res.render("usuarios/registro")

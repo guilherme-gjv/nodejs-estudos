@@ -16,6 +16,7 @@ const Categoria = mongoose.model("categorias");
 const usuario = require("./routes/usuario")
 const passport = require("passport")
 require("./config/auth")(passport)
+const db = require("./config/db")
 
 
 //configurações
@@ -46,8 +47,8 @@ app.engine('handlebars', handlebars({ defaultLayout: 'main' }));//
 app.set('view engine', 'handlebars'); 
     //mongoose
 mongoose.Promise = global.Promise;
-//mongoose.connect("mongodb://localhost:27017/blogapp").then(()=>{
-mongoose.connect("mongodb://localhost/blogapp").then(()=>{
+//mongoose.connect("mongodb://localhost/blogapp").then(()=>{
+mongoose.connect(db.mongoURI).then(()=>{ //pode ser o link ou o db.mongoURI
     console.log("conectado!");
 }).catch((err)=>{
     console.log("deu erro! "+ err);
@@ -112,7 +113,7 @@ app.get("/404", (req,res)=>{
 app.use('/admin', admin)
 app.use('/usuarios',usuario)
 //outros
-const PORT = 7777;
+const PORT = 7777 || process.env.PORT; // essa da direita serve para receber a porta aleatória do HEROKU
 app.listen(PORT, () => { 
     console.log("servidor rodandoo hehe");
 });

@@ -1,7 +1,6 @@
 {
-  "name": "app.js",
+  "name": "app",
   "version": "1.0.0",
-  "description": "",
   "main": "app.js",
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -20,8 +19,18 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.js",
+    "start":"node app.js"
   },
   "author": "Guilerme",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/guilherme-gjv/nodejs-estudos.git"
+  },
+  "bugs": {
+    "url": "https://github.com/guilherme-gjv/nodejs-estudos/issues"
+  },
+  "homepage": "https://github.com/guilherme-gjv/nodejs-estudos#readme",
+  "description": ""
 }

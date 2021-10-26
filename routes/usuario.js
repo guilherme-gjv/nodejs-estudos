@@ -11,7 +11,7 @@ router.get("/registro", (req, res) => {
     res.render("usuarios/registro")
 })
 
-router.post("/registro", (req, res) => { //NÃO ESTÁ VALIDANDO T-T
+router.post("/registro", (req, res) => {
     var erros = []
 
     if (typeof req.body.nome == undefined || req.body.nome == null) {
@@ -85,6 +85,11 @@ router.post("/login", (req,res,next)=>{
         failureRedirect: "/usuarios/login",
         failureFlash: true
     })(req,res,next)
+})
+router.get("/logout",(req,res,next)=>{
+    req.logout()
+     req.flash("success_msg","Conta desconectada")
+    res.redirect("/")
 })
 
 module.exports = router 

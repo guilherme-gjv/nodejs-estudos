@@ -92,11 +92,8 @@ router.post('/categorias/edit', (req, res) => {
 
     if (erros.length > 0) {
         Categoria.findOne({ _id: req.params.id }).then((categoria) => {
-            
-            
-            console.log("erro na edição ");
-            res.render("admin/editcategorias",{ categoria: categoria })
-            req.flash("error_msg", "esta categorias não existe")
+            res.render("admin/editcategorias",{ erros: erros, categoria:categoria})
+             //req.flash("error_msg", "esta categorias não existe")
         })
     } else {
         Categoria.findOne({ _id: req.body.id }).then((categoria) => {

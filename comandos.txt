@@ -1,0 +1,15 @@
+mpmjs.com
+
+express: 
+npm install express
+
+handlebars:
+npm install --save express-handlebars
+npm install body-parser --save
+
+mongoose:
+npm install --save mongoose
+
+session
+npm instal --save express-session
+npm install --save connect-flash

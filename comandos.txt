@@ -1,6 +1,6 @@
 Comandos e anotações
 
-mpmjs.com
+npmjs.com
 
 express: 
 npm install express

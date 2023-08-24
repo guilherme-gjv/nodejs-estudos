@@ -16,7 +16,7 @@ const Categoria = mongoose.model("categorias");
 const usuario = require("./routes/usuario");
 const passport = require("passport");
 require("./config/auth")(passport);
-const db = require("./config/db");
+require("dotenv").config();
 
 //configurações
 //session
@@ -50,9 +50,9 @@ app.set("view engine", "handlebars");
 mongoose.Promise = global.Promise;
 //mongoose.connect("mongodb://localhost/blogapp").then(()=>{
 mongoose
-  .connect(db.mongoURI)
+  .connect(process.env.MONGO_URL)
   .then(() => {
-    //pode ser o link ou o db.mongoURI
+    //pode ser o link ou o process.env.MONGO_URL
     console.log("conectado!");
   })
   .catch((err) => {

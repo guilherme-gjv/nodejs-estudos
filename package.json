@@ -1,24 +1,36 @@
 {
-  "name": "app.js",
+  "name": "app",
   "version": "1.0.0",
-  "description": "",
   "main": "app.js",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "connect-flash": "^0.1.1",
+    "dotenv": "^16.3.1",
     "express": "^4.17.1",
     "express-handlebars": "^5.3.3",
     "express-session": "^1.17.2",
     "mongoose": "^6.0.6",
     "mysql2": "^2.2.5",
-    "nodemon": "^2.0.12",
+    "nodemon": "^2.0.13",
+    "passport": "^0.5.0",
+    "passport-local": "^1.0.0",
     "sequelize": "^6.6.5"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.js",
+    "start": "node app.js"
   },
   "author": "Guilerme",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/guilherme-gjv/nodejs-estudos.git"
+  },
+  "bugs": {
+    "url": "https://github.com/guilherme-gjv/nodejs-estudos/issues"
+  },
+  "homepage": "https://github.com/guilherme-gjv/nodejs-estudos#readme",
+  "description": ""
 }

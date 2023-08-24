@@ -103,7 +103,7 @@ router.post("/categorias/edit", eAdmin, (req, res) => {
         })
         .catch((err) => {
           req.flash("error_msg", "Erro ao salvar categoria!");
-          res.redirect("/admin/categorias");
+          res.redirect("/admin/categorias/edit/" + req.body.id);
         });
     })
     .catch((err) => {
